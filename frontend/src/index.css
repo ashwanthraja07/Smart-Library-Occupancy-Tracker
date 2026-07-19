@@ -1,0 +1,389 @@
+@import "tailwindcss";
+
+/* ============================================
+   NexusFlow — Global Styles
+   ============================================ */
+
+@theme {
+  --color-bg-primary: #0A0A0F;
+  --color-bg-card: #13131A;
+  --color-bg-card-hover: #1A1A24;
+  --color-border: #2D2D3D;
+  --color-border-light: rgba(255, 255, 255, 0.1);
+  --color-text-primary: #F3F4F6;
+  --color-text-secondary: #9CA3AF;
+  --color-text-muted: #6B7280;
+  --color-purple: #6D28D9;
+  --color-purple-light: #5B21B6;
+  --color-blue: #3B82F6;
+  --color-blue-light: #2563EB;
+  --color-green: #10B981;
+  --color-green-light: #059669;
+  --color-red: #EF4444;
+  --color-red-light: #DC2626;
+  --color-yellow: #F59E0B;
+  --color-yellow-light: #D97706;
+
+  /* Light theme overrides applied via class */
+  --color-bg-primary-light: #FFFFFF;
+  --color-bg-card-light: #FAFAFA;
+  --color-bg-card-hover-light: #F4F4F5;
+  --color-border-light-theme: rgba(0, 0, 0, 0.08);
+  --color-text-primary-light: #171717;
+  --color-text-secondary-light: #52525B;
+  --color-text-muted-light: #A1A1AA;
+
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-outfit: 'Outfit', sans-serif;
+  --font-serif: 'Instrument Serif', serif;
+
+  --color-bg-toggle-off: var(--color-bg-primary);
+  --color-bg-kbd: var(--color-bg-primary);
+  --color-border-kbd: var(--color-border);
+  --color-bg-sidebar-active: var(--color-bg-card);
+}
+
+/* Base styles */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-inter);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+  }
+}
+
+/* Light theme overrides */
+body.light {
+  --color-bg-primary: #f3f4f6; /* Gray-100 */
+  --color-bg-card: #ffffff; /* White */
+  --color-bg-card-hover: #f9fafb;
+  --color-border: #e5e7eb;
+  --color-border-light: rgba(0, 0, 0, 0.1);
+  --color-text-primary: #111827;
+  --color-text-secondary: #374151;
+  --color-text-muted: #6b7280;
+  --color-purple: #2563eb; /* Blue-600 */
+
+  --color-bg-toggle-off: #e5e7eb;
+  --color-bg-kbd: #f3f4f6;
+  --color-border-kbd: #d1d5db;
+  --color-bg-sidebar-active: #e5e7eb;
+
+  /* Global inheritance as requested */
+  color: #111827;
+}
+
+/* Force light mode text colors to override Tailwind defaults */
+body.light .text-white,
+body.light .text-zinc-100,
+body.light .text-zinc-200,
+body.light .text-zinc-300 {
+  color: var(--color-text-primary) !important;
+}
+
+body.light .text-zinc-400,
+body.light .text-zinc-500 {
+  color: var(--color-text-secondary) !important;
+}
+
+/* Force Recharts and inline SVG fills to match light mode */
+body.light text[fill="#ffffff"],
+body.light text[fill="#ffffff" i] {
+  fill: var(--color-text-primary) !important;
+}
+
+body.light text[fill="#71717A"],
+body.light text[fill="#71717a" i] {
+  fill: var(--color-text-secondary) !important;
+}
+
+/* =========================================
+   Light Mode Component Overrides
+   ========================================= */
+
+/* Sidebar Logo */
+body.light .sidebar-logo-box {
+  border-color: #374151 !important;
+  background-color: #ffffff !important;
+}
+body.light .sidebar-logo-icon {
+  color: #2563eb !important;
+}
+body.light .sidebar-logo-text {
+  color: #111827 !important;
+  font-weight: 600 !important;
+}
+
+/* Sidebar Nav Items */
+body.light .sidebar-nav-inactive .sidebar-nav-icon {
+  color: #4b5563 !important;
+}
+body.light .sidebar-nav-active .sidebar-nav-icon {
+  color: #2563eb !important;
+}
+body.light .sidebar-nav-active {
+  background-color: #dbeafe !important;
+  color: #1e3a8a !important;
+}
+
+/* Status Badges */
+body.light .status-badge-online {
+  background-color: #D4EDDA !important;
+  color: #1A6B32 !important;
+}
+body.light .status-badge-away {
+  background-color: #FFF3CD !important;
+  color: #856404 !important;
+}
+body.light .status-badge-offline {
+  background-color: #E8E8E2 !important;
+  color: #4A4A44 !important;
+}
+body.light .status-badge-busy {
+  background-color: #FDDEDE !important;
+  color: #8B1A1A !important;
+}
+
+/* Status Dots */
+body.light .bg-green { background-color: #1A6B32 !important; }
+body.light .bg-yellow { background-color: #856404 !important; }
+body.light .bg-zinc-500 { background-color: #6A6A64 !important; }
+body.light .bg-red { background-color: #8B1A1A !important; }
+
+/* Status Text */
+body.light .status-text-online { color: #1A6B32 !important; }
+body.light .status-text-away { color: #856404 !important; }
+
+/* Any text using neon purple/green accents mapped to blue */
+body.light .text-\\[var\\(--color-purple\\)\\] {
+  color: #2563eb !important;
+}
+
+/* Sidebar */
+body.light aside {
+  background-color: #ffffff !important;
+}
+body.light aside a {
+  color: #111827 !important;
+}
+body.light aside a.bg-\\[var\\(--color-bg-sidebar-active\\)\\] {
+  color: #1e3a8a !important;
+  font-weight: 600 !important;
+}
+
+/* Header Elements */
+body.light header {
+  background-color: #C8C8BC !important;
+  border-bottom: 1px solid #B8B8AC !important;
+}
+
+body.light .header-avatar-btn {
+  background-color: #2A2A24 !important;
+  color: #F5F5F0 !important;
+  border-color: #2A2A24 !important;
+}
+
+body.light .header-notif-badge {
+  background-color: #A8E600 !important;
+  color: #1A1A18 !important;
+  border: 2px solid #C8C8BC !important;
+  font-weight: 700 !important;
+}
+
+body.light .header-notif-icon {
+  color: #2A2A24 !important;
+}
+
+body.light .header-search-btn {
+  background-color: #DEDED6 !important;
+  border: 1px solid #BCBCB0 !important;
+  color: #2A2A24 !important;
+}
+
+body.light .header-search-kbd {
+  background-color: #CECEC6 !important;
+  border-color: #BCBCB0 !important;
+  color: #2A2A24 !important;
+}
+
+/* Breadcrumbs */
+body.light .breadcrumb-path { color: #6b7280 !important; }
+body.light .breadcrumb-sep { color: #9ca3af !important; }
+body.light .breadcrumb-current { color: #2563eb !important; }
+
+/* Dashboard Titles */
+body.light .dashboard-title { color: #1A1A18 !important; font-weight: 700 !important; }
+body.light .dashboard-subtitle { color: #4A4A44 !important; }
+
+/* Stat Cards */
+body.light .stat-card-title { color: #4A4A44 !important; }
+body.light .stat-card-value { color: #1A1A18 !important; font-weight: 700 !important; }
+body.light .stat-card-desc { color: #4A4A44 !important; }
+body.light .stat-trend-positive { color: #2D6A0A !important; }
+body.light .stat-trend-negative { color: #8B1A1A !important; }
+
+body.light .stat-icon-purple { background-color: #C8E6A0 !important; color: #2D6A0A !important; }
+body.light .stat-icon-green { background-color: #C8E6A0 !important; color: #2D6A0A !important; }
+body.light .stat-icon-blue { background-color: #B8D4F0 !important; color: #1A4A7A !important; }
+body.light .stat-icon-yellow { background-color: #F0C8D8 !important; color: #7A1A3A !important; }
+
+/* Create Task Modal */
+body.light .task-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+body.light .task-modal-container {
+  background-color: #FFFFFF !important;
+}
+body.light .task-modal-title {
+  color: #1A1A18 !important;
+}
+body.light .task-modal-input {
+  background-color: #DEDED6 !important;
+  border: 1px solid #BCBCB0 !important;
+  color: #2A2A24 !important;
+}
+body.light .task-modal-input::placeholder {
+  color: #6A6A64 !important;
+}
+body.light .task-modal-label {
+  color: #6A6A64 !important;
+}
+body.light .task-modal-cancel {
+  color: #4A4A44 !important;
+}
+body.light .task-modal-close {
+  color: #6A6A64 !important;
+}
+body.light .task-modal-icon {
+  color: #6A6A64 !important;
+}
+
+/* Global Custom Dropdown in Light Mode */
+body.light .dropdown-trigger {
+  background-color: #DEDED6 !important;
+  border: 1px solid #BCBCB0 !important;
+  color: #2A2A24 !important;
+}
+body.light .dropdown-menu {
+  background-color: #DEDED6 !important;
+  border: 1px solid #BCBCB0 !important;
+}
+body.light .dropdown-item {
+  color: #2A2A24 !important;
+}
+body.light .dropdown-item:hover {
+  background-color: #D4D4CC !important;
+}
+body.light .dropdown-item[data-selected="true"],
+body.light .dropdown-item.selected,
+body.light .dropdown-item .text-\\[var\\(--color-purple\\)\\] {
+  color: #2563eb !important;
+}
+
+/* Chart Cards */
+body.light .chart-card {
+  background-color: #DEDED6 !important;
+  border: 1px solid #BCBCB0 !important;
+  border-radius: 12px !important;
+}
+body.light .chart-card svg {
+  background-color: transparent !important;
+}
+body.light .chart-card h3 {
+  color: #1A1A18 !important;
+}
+body.light .chart-card line[stroke="#27272A"] {
+  stroke: #E8E8E2 !important;
+}
+body.light .chart-card text[fill="#ffffff"] {
+  fill: #1A1A18 !important;
+}
+body.light .chart-card text[fill="#71717A"] {
+  fill: #5C5C57 !important;
+}
+body.light .chart-card .text-zinc-400 {
+  color: #5C5C57 !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-light);
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+}
+
+/* Glassmorphism utility removed for flat design */
+.glass {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+}
+
+.light .glass {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+/* Gradient text removed for flat design */
+.gradient-text {
+  color: var(--color-text-primary);
+}
+
+/* Shimmer animation for skeletons */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-card) 25%,
+    var(--color-border) 50%,
+    var(--color-bg-card) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--color-purple);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-purple);
+  color: var(--color-bg-primary);
+}
