@@ -174,19 +174,3 @@ Open http://localhost:5173 in your browser.
 | backend | Node.js backend only |
 | UI-UX | Design assets only |
 
----
-
-## Team
-
-| Name | Role |
-|---|---|
-| Ashwanth | Project Lead + UI/UX + Simulator |
-| Greesy | Frontend |
-| Pratham | Backend |
-| Vaishnavi | Backend |
-
----
-
-## Note for Team Members
-
-The `.env` file is not included in this repo for security reasons. Contact Ashwanth on WhatsApp to get the real NeonDB connection string. Copy `.env.example` to `.env` and paste the credentials.
