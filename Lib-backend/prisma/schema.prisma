@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Floor {
+  floor_id        Int    @id @default(autoincrement())
+  floor_name      String
+  total_seats     Int
+  floor_image_url String
+
+  seats Seat[]
+}
+
+model Seat {
+  seat_id         Int      @id @default(autoincrement())
+  floor_id        Int
+  row_label       String
+  seat_number     Int
+  zone_type       String
+  has_outlet      Boolean
+  near_ac         Boolean
+  is_window_seat  Boolean
+  comfort_score   Int
+
+  floor           Floor          @relation(fields: [floor_id], references: [floor_id])
+  seat_status     SeatStatus?
+  occupancy_logs  OccupancyLog[]
+}
+
+model SeatStatus {
+  seat_id       Int      @id
+  is_occupied   Boolean
+  last_updated  DateTime
+
+  seat Seat @relation(fields: [seat_id], references: [seat_id])
+}
+
+model OccupancyLog {
+  log_id      Int      @id @default(autoincrement())
+  seat_id     Int
+  status      String
+  timestamp   DateTime
+
+  seat Seat @relation(fields: [seat_id], references: [seat_id])
+}
+
+model Student {
+  reg_number String   @id
+  name        String
+  email       String  @unique
+  last_login  DateTime?
+}
